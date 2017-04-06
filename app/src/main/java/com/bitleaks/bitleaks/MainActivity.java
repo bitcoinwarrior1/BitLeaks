@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             int j = 0;
             for(int i=40; i < text.length(); i += 40)
             {
-                writeToBlockchain(text.substring(j, i));
+                writeToBlockchain(text.substring(j, i).replaceAll(" ", "-")); //remove all spaces with dashes
                 j = i;
             }
         }
@@ -47,12 +47,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static void main(String args[]){
-        writeToBlockchain("hello");
-    }
-
     protected static void writeToBlockchain(String chunk)
     {
-        OpReturnApi.Companion.storeMessageOnBlockchain(chunk);
+        OpReturnApi.Companion.storeMessageOnBlockchain(chunk.replaceAll(" ", "-"));
     }
 }
